@@ -15,7 +15,7 @@ export default function Clock() {
       secondHandle.current.style.transform = `rotateZ(${ss * 6}deg)`;
       minuteHandle.current.style.transform = `rotateZ(${mm * 6}deg)`;
       hourHandle.current.style.transform = `rotateZ(${hh * 30}deg)`;
-    });
+    }, 1000);
   }, []);
 
   return (
