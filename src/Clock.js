@@ -1,17 +1,34 @@
+import { useEffect, useRef } from "react";
 import "./styles.css";
 
 export default function Clock() {
+  const secondHandle = useRef(null);
+  const minuteHandle = useRef(null);
+  const hourHandle = useRef(null);
+
+  useEffect(() => {
+    setInterval(() => {
+      let date = new Date();
+      let ss = date.getSeconds();
+      let mm = date.getMinutes();
+      let hh = date.getHours();
+      secondHandle.current.style.transform = `rotateZ(${ss * 6}deg)`;
+      minuteHandle.current.style.transform = `rotateZ(${mm * 6}deg)`;
+      hourHandle.current.style.transform = `rotateZ(${hh * 30}deg)`;
+    });
+  }, []);
+
   return (
     <div id="app">
       <div className="clock-container">
         <div className="clock">
-          <div className="hor" id="hor">
+          <div ref={hourHandle} className="hor" id="hor">
             <div className="hr"></div>
           </div>
-          <div className="min" id="min">
+          <div ref={minuteHandle} className="min" id="min">
             <div className="mn"></div>
           </div>
-          <div className="sec" id="sec">
+          <div ref={secondHandle} className="sec" id="sec">
             <div className="sc"></div>
           </div>
         </div>
